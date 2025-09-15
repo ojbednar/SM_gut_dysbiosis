@@ -1,0 +1,25 @@
+# R session files
+.Rhistory
+.RData
+.Rproj.user/
+
+# RStudio project files
+*.Rproj
+
+# Data and outputs
+data/
+outputs/
+results/
+figures/
+*.csv
+*.rds
+*.rda
+*.RData
+
+# Cache / temp
+tmp/
+*.tmp
+
+# OS junk
+.DS_Store
+Thumbs.db
