@@ -18,4 +18,4 @@ Please download the data from Zenodo before running the analyses.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/oliviabednarski/SM_dysbiosis.git
+git clone https://github.com/ojbednar/SM_gut_dysbiosis.git
