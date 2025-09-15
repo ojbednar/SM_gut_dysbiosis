@@ -1,0 +1,45 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 ##step 2 of kraken2/bracken analysis, estimate abundance and generate reports\
+\
+#!/bin/bash\
+\
+#SBATCH -J all_est_abundance\
+#SBATCH -o all_est_abundance_%j.txt\
+#SBATCH -e all_est_abundance_%j.err\
+#SBATCH --nodes=1\
+#SBATCH --time=18:00:00\
+#SBATCH --mem=150GB\
+\
+module load anaconda\
+\
+conda activate mamba_cenv\
+\
+cd /N/project/NDI_WGS/WGS/kraken\
+\
+# Directory containing kreport files\
+kreport_dir="/N/project/NDI_WGS/WGS/kraken/k2_report"\
+\
+# Loop over all kreport files in the directory\
+for kreport_file in "$kreport_dir"/*.kreport\
+do\
+    if [ -f "$kreport_file" ]; then\
+        # Extract the sample name from the kreport file name (assuming the file name format is consistent)\
+        sample_name=$(basename "$kreport_file" | sed 's/\\.kreport$//')\
+\
+        # Run the next step for the current sample\
+        echo "Running next step for sample: $sample_name"\
+        est_abundance.py -i "$kreport_file" -k standard_db/database150mersb.kmer_distrib -l S -t 10 -o "bracken_output/$\{sample_name\}.bracken" --out-report "bracken_report/$\{sample_name\}.breport"\
+\
+    else\
+        echo "Error: kreport file not found: $kreport_file"\
+    fi\
+done\
+\
+\
+}
