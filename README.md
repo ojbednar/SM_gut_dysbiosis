@@ -5,6 +5,7 @@ This repository contains the analysis scripts for the study titled "Gut bacteria
 ## Data
 
 All raw datasets are **too large for GitHub** and are hosted on [[Zenodo]](https://doi.org/10.5281/zenodo.17117942).  
+[![DOI](https://zenodo.org/badge/1056867600.svg)](https://doi.org/10.5281/zenodo.17118138)
 Please download the data from Zenodo before running the analyses.
 
 ## Repository Structure
